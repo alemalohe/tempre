@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<style>
+  .header{
+    background-color: blueviolet;
+    color: white;
+    padding: 30px;
+  }
+  .alia{
+    
+    background-color: fff;
+    box-shadow: 0 1px 4px rgb(57, 48, 65);
+    margin-top: 50px;
+    padding: 5px;
+    padding-bottom: 40px;
+    color: blueviolet;
+  }
+  .icon{
+    float: left;
+    padding-top: 90px;
+    padding-left: 20px;
+    margin-left: 60px;
+    margin-right: -60px;
+    padding-bottom: 30px;
+  }
+  .tr{
+    float: center;
+    text-align: center;
+  }
+  .in-put{
+    background-color: transparent;
+    color: blueviolet);
+    border-color: blueviolet;
+    border-width: 2px;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 5px;
+  }
+  ::placeholder{
+    color: blueviolet;
+  }
+  button{
+    padding: 6px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: white;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-color: blueviolet;
+    background-color:blueviolet;
+    border-style: solid;
+    border-width: 1px;
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h3>Weather App</h3>
+  </div>
+  <div class="main container text-center">
+  <form method="POST"> 
+    {% csrf_token %}
+    <div class="input"><br><br><br>
+      {{ form.name }}
+      <button type="submit">Add City</button>
+    </div></form>
+    <div class="row">
+    {% for city_weather in city_data %}
+    
+
+    <div class=" alia col-lg-4">
+        <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" class="icon"><br><br>
+        <h2 class="tr" >{{ city_weather.city }}</h2>
+        <h3 class="tr">{{ city_weather.temp }}°F</h3>
+        <p class="tr" style="text-align:center;">{{ city_weather.desc }}</p>
+    </div>
+    
+    {% endfor %}
+  </div>
+  </div>
+</body>
+</html>
